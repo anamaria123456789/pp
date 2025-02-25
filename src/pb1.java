@@ -1,5 +1,5 @@
 public class pb1 {
-        class Node{
+        static class Node{
             String value;
             Node left, right;
 
@@ -8,9 +8,9 @@ public class pb1 {
                 left = right = null;
             }
         }
-        public class ExpressionTree{
-            private int index = 0;
-            private boolean isNumber(String token){
+        public static class ExpressionTree{
+            private static int index = 0;
+            private static boolean isNumber(String token){
                 try{
                     Double.parseDouble(token);
                     return true;
@@ -18,7 +18,7 @@ public class pb1 {
                     return false;
                 }
             }
-            public Node buildTree(String[] tokens){
+            public static Node buildTree(String[] tokens){
                 if(index >= tokens.length)
                     return null;
                 String token = tokens[index++];
