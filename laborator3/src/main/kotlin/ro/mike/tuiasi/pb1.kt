@@ -28,15 +28,12 @@ fun main() {
     val feed = RSSFeed()
 
     try {
-        // Conectare și parsare RSS
         val doc = Jsoup.connect(rssUrl).get()
 
-        // Extragere date generale
         feed.title = doc.select("channel > title").first()?.text() ?: ""
         feed.link = doc.select("channel > link").first()?.text() ?: ""
         feed.description = doc.select("channel > description").first()?.text() ?: ""
 
-        // Extragere item-uri
         doc.select("item").forEach { element ->
             val item = RSSItem().apply {
                 title = element.select("title").text()
@@ -47,7 +44,6 @@ fun main() {
             feed.addItem(item)
         }
 
-        // Afișare rezultate
         feed.items.forEach {
             println("Title: ${it.title}")
             println("Link: ${it.link}")
